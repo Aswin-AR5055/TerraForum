@@ -55,6 +55,18 @@ export default function CommentSection({ postId }) {
     }
   };
 
+  const handleDeleteComment = async (commentId) => {
+    setLoading(true);
+    try {
+      await API.delete(`/comments/delete/${commentId}/`);
+      fetchComments();
+    } catch (error) {
+      console.error("Failed to delete comment", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
 
   return (
     <div className="mt-4">
@@ -91,6 +103,14 @@ export default function CommentSection({ postId }) {
             <span className="ml-2">
             {comment.content}
             </span>
+            <br /> <br />
+            <button
+              onClick={() => handleDeleteComment(comment.id)}
+              disabled={loading}
+              className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+            >
+                Delete
+            </button>
         </div>
       ))}
       </div>

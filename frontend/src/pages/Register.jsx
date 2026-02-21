@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/api";
+import Navbar from "../components/NavBar";
 
 export default function Register() {
 
@@ -44,36 +45,50 @@ export default function Register() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      
-      <h2>Register</h2>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+      <div className="flex justify-center items-center w-full">
+      <h2 className="text-2xl font-bold mb-6">Register</h2>
 
-      <form onSubmit={handleRegister}>
+      <form onSubmit={handleRegister} className="bg-white p-8 rounded-lg shadow-md w-80">
 
         <div>
           <input
             type="text"
             placeholder="Username"
+            className="w-full border p-2 rounded mb-4"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
 
-        <div style={{ marginTop: "10px" }}>
+        <div>
           <input
             type="password"
             placeholder="Password"
+            className="w-full border p-2 rounded mb-4"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
 
-        <div style={{ marginTop: "10px" }}>
-          <button type="submit" disabled={loading}>
+        <div className="mt-4">
+          <button type="submit" disabled={loading} className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
             {loading ? "Registering..." : "Register"}
           </button>
+        </div>
+
+        <div className="mt-4 text-center">
+          <p>
+            Already have an account?{" "}
+            <span
+              onClick={() => navigate("/login")}
+              className="text-blue-500 cursor-pointer hover:underline"
+            >
+              Login here
+            </span>
+          </p>
         </div>
 
       </form>
@@ -83,7 +98,7 @@ export default function Register() {
           {error}
         </p>
       )}
-
+      </div>
     </div>
   );
 }

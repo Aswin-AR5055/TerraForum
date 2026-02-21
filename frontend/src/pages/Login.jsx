@@ -43,7 +43,7 @@ export default function Login() {
             console.log("Stored Token:", localStorage.getItem("token"));
 
             alert("Login Successful");
-            navigate("/");
+            navigate("/dashboard");
         } catch (err) {
 
             if (err.response) {

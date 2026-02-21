@@ -37,11 +37,8 @@ def create_comment(request):
 
 @api_view(["GET"])
 def get_comments(request, post_id):
-
     comments = Comment.objects(post_id=post_id).order_by("-created_at")
-
     result = []
-
     for comment in comments:
         result.append({
             "id": str(comment.id),
@@ -50,5 +47,16 @@ def get_comments(request, post_id):
             "content": comment.content,
             "created_at": comment.created_at
         })
+    return Response(result, status=status.HTTP_200_OK)
 
-        return Response(result, status=status.HTTP_200_OK)
+@api_view(["DELETE"])
+@jwt_required
+def delete_comment(request, comment_id):
+    try:
+        comment = Comment.objects.get(id=comment_id)
+        if comment.author_id != request.user["user_id"]:
+            return Response({"error": "Unauthorized"}, status=status.HTTP_403_FORBIDDEN)
+        comment.delete()
+        return Response({"message": "Comment deleted"}, status=status.HTTP_200_OK)
+    except Comment.DoesNotExist:
+        return Response({"error": "Comment not found"}, status=status.HTTP_404_NOT_FOUND)
