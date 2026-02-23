@@ -1,45 +1,42 @@
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
-    const token = localStorage.getItem("token");
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
-    const handleLogout = () => {
-        localStorage.removeItem("token");
-        navigate("/login");
-    };
+  return (
+    <nav className="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white px-6 py-4 shadow-2xl border-b border-gray-800">
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <Link to="/" className="text-2xl font-bold flex items-center gap-2 hover:scale-105 transition-transform">
+          <span className="text-blue-400">🌍</span>
+          TerraForum
+        </Link>
 
-    return (
-        <nav className="bg-blue-600 text-white px-4 py-5 shadow">
-
-            <div className="max-w-4x2 mx-auto flex justify-between items-center">
-
-                <Link to="/" className="text-lg font-bold">
-                TerraForum
-                </Link>
-
-                <div className="flex gap-3">
-                    {!token ? (
-                        <>
-                        <Link to="/login" className="hover:underline">
-                            Login
-                        </Link>
-                        <Link to="/register" className="hover:underline">
-                            Register
-                        </Link>
-                        </>
-                    ) : (
-
-                    <button
-                        onClick={handleLogout}
-                        className="bg-red-500 px-3 py-2 rounded hover:bg-red-600"
-                    >
-                        Logout
-                    </button>
-                    )}
-                </div>
-            </div>
-        </nav>
-    );
+        <div className="flex gap-4 items-center">
+          {!token ? (
+            <>
+              <Link to="/login" className="px-4 py-2 rounded-lg hover:bg-white/10 transition-all">
+                Login
+              </Link>
+              <Link to="/register" className="px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-all shadow-lg">
+                Register
+              </Link>
+            </>
+          ) : (
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-lg transform hover:scale-105"
+            >
+              Logout
+            </button>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
 }

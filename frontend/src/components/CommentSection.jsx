@@ -72,14 +72,14 @@ export default function CommentSection({ postId }) {
     <div className="mt-4">
 
       <div className="flex gap-2">
-      <h4>Comments</h4>
+      <h4 className="text-lg font-semibold text-gray-300">Comments</h4>
 
       <input
         type="text"
         placeholder="Add comment"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        className="flex-1 border p-2 rounded"
+        className="flex-1 border p-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
 
       <button 
