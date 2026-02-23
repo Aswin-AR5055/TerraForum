@@ -1,8 +1,27 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import API from "../api/api";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+
+  const [profilePic, setProfilePic] = useState("");
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await API.get("/users/profile/");
+        setProfilePic(res.data.profile_picture);
+      } catch (err) {
+        console.error("Failed to fetch profile picture:", err);
+      }
+    };
+
+    if (token) {
+      fetchProfile();
+    }
+  }, [token]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -28,12 +47,17 @@ export default function Navbar() {
               </Link>
             </>
           ) : (
-            <button
-              onClick={handleLogout}
-              className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-lg transform hover:scale-105"
-            >
-              Logout
-            </button>
+            <>
+              <Link to="/profile">
+                <img src={profilePic} alt="Profile" className="w-10 h-10 rounded-full border-2 border-blue-400" />
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-lg transform hover:scale-105"
+              >
+                Logout
+              </button>
+            </>
           )}
         </div>
       </div>
