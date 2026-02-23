@@ -88,13 +88,13 @@ export default function Feed() {
               <div className="flex gap-3 mb-4">
                 <button
                   onClick={() => handleLike(post.id)}
-                  className="flex-1 bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white px-4 py-2 rounded-lg transition-all shadow-lg transform hover:scale-105"
+                  className="flex-1 bg-gradient-to-r from-yellow-600 to-yellow-600 hover:to-yellow-700 text-white px-4 py-2 rounded-lg transition-all shadow-lg transform hover:scale-105"
                 >
-                  ❤️ Like
+                  👍 Like
                 </button>
                 <button
                   onClick={() => handleDelete(post.id)}
-                  className="bg-red-900/50 hover:bg-red-900 border border-red-700 text-red-300 px-4 py-2 rounded-lg transition-all"
+                  className="bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition-all"
                 >
                   🗑️ Delete
                 </button>

@@ -79,7 +79,7 @@ export default function CommentSection({ postId }) {
         placeholder="Add comment"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        className="flex-1 border p-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="flex-1 border p-2 rounded-xl bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
 
       <button 
@@ -95,19 +95,19 @@ export default function CommentSection({ postId }) {
       <div className="mt-2">
       {comments.map((comment) => (
         <div key={comment.id} 
-        className="bg-gray-100 p-2 rounded mt-2"
+        className="border border-gray-700 p-2 rounded-xl mt-2"
         >
-          <span className="font-semibold">
+          <span className="font-semibold text-white">
             {comment.author_username}</span>
 
-            <span className="ml-2">
+            <span className="ml-2 text-white">
             {comment.content}
             </span>
             <br /> <br />
             <button
               onClick={() => handleDeleteComment(comment.id)}
               disabled={loading}
-              className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+              className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
             >
                 Delete
             </button>

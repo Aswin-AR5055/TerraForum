@@ -31,7 +31,7 @@ export default function Navbar() {
   return (
     <nav className="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white px-6 py-4 shadow-2xl border-b border-gray-800">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold flex items-center gap-2 hover:scale-105 transition-transform">
+        <Link to="/dashboard" className="text-2xl font-bold flex items-center gap-2 hover:scale-105 transition-transform">
           <span className="text-blue-400">🌍</span>
           TerraForum
         </Link>
