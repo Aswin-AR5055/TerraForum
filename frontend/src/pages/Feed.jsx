@@ -80,7 +80,7 @@ export default function Feed() {
                   Posted by <span className="text-blue-400 font-semibold">{post.author_username}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-400">
-                  <span className="text-red-400">❤️</span>
+                  <span className="text-red-400">👍</span>
                   <span className="font-semibold">{post.like_count || 0}</span>
                 </div>
               </div>
