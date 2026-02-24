@@ -128,3 +128,21 @@ CORS_ALLOW_ALL_ORIGINS = True
 JWT_SECRET = os.getenv("JWT_SECRET", "terraforum-super-secret-key-2026-secure-jwt")
 JWT_ALGORITHM = "HS256"
 JWT_EXP_DELTA_SECONDS = 86400
+
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/hour',
+        'user': '1000/day'
+    }
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+    }
+}

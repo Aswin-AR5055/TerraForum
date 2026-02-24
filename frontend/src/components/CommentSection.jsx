@@ -71,21 +71,21 @@ export default function CommentSection({ postId }) {
   return (
     <div className="mt-4">
 
-      <div className="flex gap-2">
-      <h4 className="text-lg font-semibold text-gray-300">Comments</h4>
+      <div className="flex flex-col sm:flex-row gap-2">
+      <h4 className="text-lg font-semibold text-gray-300 sm:hidden">Comments</h4>
 
       <input
         type="text"
         placeholder="Add comment"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        className="flex-1 border p-2 rounded-xl bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="flex-1 border p-2 rounded-xl bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-0"
       />
 
       <button 
       onClick={handleAddComment} 
       disabled={loading}
-      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 whitespace-nowrap"
       >
         Add
       </button>
