@@ -39,10 +39,10 @@ export default function Navbar() {
         <div className="flex gap-4 items-center">
           {!token ? (
             <>
-              <Link to="/login" className="px-4 py-2 rounded-lg hover:bg-white/10 transition-all">
+              <Link to="/login" className="px-4 py-2 rounded-lg hover:bg-blue-700 transition-all">
                 Login
               </Link>
-              <Link to="/register" className="px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-all shadow-lg">
+              <Link to="/register" className="px-4 py-2 rounded-lg hover:bg-blue-700 transition-all shadow-lg">
                 Register
               </Link>
             </>
